@@ -1,0 +1,26 @@
+<div class="input-group">
+  <span class="input-group-btn">
+    <button (click)="cambiarValor(-10)"
+            class="btn"
+            [ngClass]="btnClass"
+            type="button">
+      <i class="fa fa-minus"></i>
+    </button>
+  </span>
+  <input [(ngModel)]="progreso"
+         (ngModelChange)="onChange()"
+         class="form-control"
+         max="100"
+         min="0"
+         #inputIncremento
+         placeholder="Progreso"
+         type="number">
+  <span class="input-group-btn">
+    <button (click)="cambiarValor(10)"
+            class="btn"
+            [ngClass]="btnClass"
+            type="button">
+      <i class="fa fa-plus"></i>
+    </button>
+  </span>
+</div>
