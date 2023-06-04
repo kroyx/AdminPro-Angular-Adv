@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { SettingsService } from '../../services/settings.service';
 
 @Component({
   templateUrl: './dashboard-layout.component.html',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
 })
 export class DashboardLayoutComponent {
 
+  private settingsService = inject(SettingsService);
+
   public year: number = new Date().getFullYear();
+
 }

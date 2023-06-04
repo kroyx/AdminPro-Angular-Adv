@@ -11,6 +11,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { Grafica1Component } from './pages/grafica1/grafica1.component';
 import { ProgressComponent } from './pages/progress/progress.component';
 import { GraficoDonutComponent } from './components/grafico-donut/grafico-donut.component';
+import { AccountSettingsComponent } from './pages/account-settings/account-settings.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { GraficoDonutComponent } from './components/grafico-donut/grafico-donut.
     ProgressComponent,
     IncrementadorComponent,
     GraficoDonutComponent,
+    AccountSettingsComponent,
   ],
   imports: [
     CommonModule,
