@@ -36,28 +36,25 @@
         </li>
         <li class="nav-devider"></li>
         <li class="nav-small-cap">PERSONAL</li>
-        <li>
+        <li *ngFor="let item of menuItems">
           <a aria-expanded="false"
              class="has-arrow waves-effect waves-dark"
              href="#">
-            <i class="mdi mdi-gauge"></i>
-            <span class="hide-menu">Dashboard
-              <span class="label label-rouded label-themecolor pull-right">4</span>
+            <i [ngClass]="item.icon" class="mdi mdi-gauge"></i>
+            <span class="hide-menu">
+              {{ item.title }}
+              <span
+                class="label label-rouded label-themecolor pull-right">
+                {{item.submenu?.length}}
+              </span>
             </span>
           </a>
           <ul aria-expanded="false"
               class="collapse">
-            <li>
-              <a href="../../../../index.html">Minimal</a>
-            </li>
-            <li>
-              <a href="index2.html">Analytical</a>
-            </li>
-            <li>
-              <a href="index3.html">Demographical</a>
-            </li>
-            <li>
-              <a href="index4.html">Modern</a>
+            <li *ngFor="let itemSubmenu of item.submenu">
+              <a [routerLink]="[itemSubmenu.url]">
+                {{ itemSubmenu.title}}
+              </a>
             </li>
           </ul>
         </li>
