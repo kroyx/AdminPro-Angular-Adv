@@ -14,7 +14,7 @@ import { NoPageFoundComponent } from './pages/no-page-found/no-page-found.compon
     NoPageFoundComponent,
   ],
   imports: [
-    RouterModule
+    RouterModule,
   ],
   exports: [
     BreadcrumbsComponent,
@@ -23,4 +23,5 @@ import { NoPageFoundComponent } from './pages/no-page-found/no-page-found.compon
     NoPageFoundComponent,
   ],
 })
-export class SharedModule {}
+export class SharedModule {
+}

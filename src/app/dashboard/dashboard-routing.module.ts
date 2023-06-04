@@ -9,14 +9,14 @@ import { ProgressComponent } from './pages/progress/progress.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'dashboard',
     component: DashboardLayoutComponent,
     children: [
-      { path: '', component: DashboardComponent, pathMatch: 'full' },
+      { path: '', component: DashboardComponent},
       { path: 'grafica1', component: Grafica1Component },
       { path: 'progress', component: ProgressComponent },
       { path: 'account-settings', component: AccountSettingsComponent },
-      { path: '**', component: NoPageFoundComponent },
+      // { path: '**', component: NoPageFoundComponent },
     ],
   },
 ];
