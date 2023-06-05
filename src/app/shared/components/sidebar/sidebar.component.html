@@ -40,7 +40,8 @@
           <a aria-expanded="false"
              class="has-arrow waves-effect waves-dark"
              href="#">
-            <i [ngClass]="item.icon" class="mdi mdi-gauge"></i>
+            <i [ngClass]="item.icon"
+               class="mdi mdi-gauge"></i>
             <span class="hide-menu">
               {{ item.title }}
               <span
@@ -52,7 +53,9 @@
           <ul aria-expanded="false"
               class="collapse">
             <li *ngFor="let itemSubmenu of item.submenu">
-              <a [routerLink]="[itemSubmenu.url]">
+              <a [routerLink]="[itemSubmenu.url]"
+                 [routerLinkActiveOptions]="{exact: true}"
+                 routerLinkActive="active">
                 {{ itemSubmenu.title}}
               </a>
             </li>

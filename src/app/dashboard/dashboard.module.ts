@@ -12,6 +12,8 @@ import { Grafica1Component } from './pages/grafica1/grafica1.component';
 import { ProgressComponent } from './pages/progress/progress.component';
 import { GraficoDonutComponent } from './components/grafico-donut/grafico-donut.component';
 import { AccountSettingsComponent } from './pages/account-settings/account-settings.component';
+import { PromesasComponent } from './pages/promesas/promesas.component';
+import { RxjsComponent } from './pages/rxjs/rxjs.component';
 
 
 @NgModule({
@@ -23,6 +25,8 @@ import { AccountSettingsComponent } from './pages/account-settings/account-setti
     IncrementadorComponent,
     GraficoDonutComponent,
     AccountSettingsComponent,
+    PromesasComponent,
+    RxjsComponent,
   ],
   imports: [
     CommonModule,
