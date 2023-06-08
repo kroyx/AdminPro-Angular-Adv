@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { authGuard } from './auth/guards/auth.guard';
 import { NoPageFoundComponent } from './shared/pages/no-page-found/no-page-found.component';
-import {DashboardRoutingModule} from "./dashboard/dashboard-routing.module";
-import {AuthRoutingModule} from "./auth/auth-routing.module";
-import {SharedModule} from "./shared/shared.module";
 
 const routes: Routes = [
   {
@@ -12,6 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
+    // canActivate: [ authGuard ],
     loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
   },
   { path: '', redirectTo: 'auth', pathMatch: 'full' },

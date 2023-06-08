@@ -7,32 +7,42 @@
   <div class="login-box card">
     <div class="card-body">
       <form (submit)="login()"
+            [formGroup]="loginForm"
+            autocomplete="off"
             class="form-horizontal form-material"
             id="loginform">
         <a class="text-center db"
            href="javascript:void(0)">
           <img
             alt="Home"
-            src="../assets/images/logo-icon.png"/>
+            src="./assets/images/logo-icon.png"/>
           <br/>
           <img
             alt="Home"
-            src="../assets/images/logo-text.png"/>
+            src="./assets/images/logo-text.png"/>
         </a>
         <div class="form-group m-t-40">
           <div class="col-xs-12">
             <input class="form-control"
                    placeholder="Username"
-                   required=""
+                   formControlName="email"
                    type="text">
+            <span *ngIf="isInvalidField('email')"
+                  class="form-text text-danger">
+              {{ getFieldError('email') }}
+            </span>
           </div>
         </div>
         <div class="form-group">
           <div class="col-xs-12">
             <input class="form-control"
                    placeholder="Password"
-                   required=""
+                   formControlName="password"
                    type="password">
+            <span *ngIf="isInvalidField('password')"
+                  class="form-text text-danger">
+              {{ getFieldError('password') }}
+            </span>
           </div>
         </div>
         <div class="form-group row">
@@ -40,6 +50,7 @@
             <div class="checkbox checkbox-primary pull-left p-t-0">
               <input class="filled-in chk-col-light-blue"
                      id="checkbox-signup"
+                     formControlName="remember"
                      type="checkbox">
               <label for="checkbox-signup"> Remember me</label>
             </div>
@@ -63,35 +74,21 @@
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
             <div class="social">
-              <a class="btn  btn-facebook"
-                 data-toggle="tooltip"
-                 href="javascript:void(0)"
-                 title="Login with Facebook">
-                <i aria-hidden="true"
-                   class="fa fa-facebook"></i>
-              </a>
-              <a class="btn btn-googleplus"
-                 data-toggle="tooltip"
-                 href="javascript:void(0)"
-                 title="Login with Google">
-                <i
-                  aria-hidden="true"
-                  class="fa fa-google-plus"></i>
-              </a>
+              <div #googleBtn id="buttonDiv"></div>
             </div>
           </div>
         </div>
         <div class="form-group m-b-0">
           <div class="col-sm-12 text-center">
             Don't have an account?
-            <a class="text-primary m-l-5"
-               href="pages-register2.html">
+            <a [routerLink]="['/auth/register']"
+               class="text-primary m-l-5">
               <b>Sign Up</b>
             </a>
           </div>
         </div>
       </form>
-      <form action="index.html"
+      <form action="../../../../index.html"
             class="form-horizontal"
             id="recoverform">
         <div class="form-group ">
