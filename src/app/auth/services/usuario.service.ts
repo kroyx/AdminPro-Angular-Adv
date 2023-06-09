@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment';
 import {
   AuthResponse,
   GoogleSigninResponse,
-  LoginForm,
+  LoginForm, PerfilForm,
   RegisterForm,
   Usuario,
 } from '../interfaces';
@@ -35,9 +35,23 @@ export class UsuarioService {
     this._googleEmail = email;
   }
 
+  get token(): string {
+    return sessionStorage.getItem('token') ?? '';
+  }
+
   crearUsuario(formData: RegisterForm): Observable<AuthResponse> {
     const url = `${this.baseUrl}/usuarios`;
     return this.http.post<AuthResponse>(url, formData);
+  }
+
+  actualizarPerfil(formData: Usuario) {
+    formData.role = this.usuario!.role;
+    const url = `${this.baseUrl}/usuarios/${this.usuario!.uid}`;
+    return this.http.put<AuthResponse>(url, formData, {
+      headers: {
+        'x-token': this.token
+      }
+    });
   }
 
   loginUsuario(formData: LoginForm) {
@@ -51,11 +65,10 @@ export class UsuarioService {
   }
 
   validarToken(): Observable<boolean> {
-    const token = sessionStorage.getItem('token') ?? '';
     const url = `${this.baseUrl}/login/renew`;
     return this.http.get<AuthResponse>(url, {
       headers: {
-        'x-token':token
+        'x-token': this.token
       }
     }).pipe(
       map( (res) => {

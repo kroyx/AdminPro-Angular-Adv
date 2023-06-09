@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgChartsModule } from 'ng2-charts';
 import { SharedModule } from '../shared/shared.module';
 import { IncrementadorComponent } from './components/incrementador/incrementador.component';
@@ -14,6 +14,7 @@ import { GraficoDonutComponent } from './components/grafico-donut/grafico-donut.
 import { AccountSettingsComponent } from './pages/account-settings/account-settings.component';
 import { PromesasComponent } from './pages/promesas/promesas.component';
 import { RxjsComponent } from './pages/rxjs/rxjs.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { RxjsComponent } from './pages/rxjs/rxjs.component';
     AccountSettingsComponent,
     PromesasComponent,
     RxjsComponent,
+    PerfilComponent,
   ],
   imports: [
     CommonModule,
@@ -34,6 +36,7 @@ import { RxjsComponent } from './pages/rxjs/rxjs.component';
     SharedModule,
     FormsModule,
     NgChartsModule,
+    ReactiveFormsModule,
   ],
 })
 export class DashboardModule {}

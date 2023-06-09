@@ -84,6 +84,7 @@ export class LoginComponent implements AfterViewInit {
       this.loginForm.markAllAsTouched();
       return;
     }
+    console.log('login');
 
     this.usuarioService.loginUsuario(this.loginForm.value)
       .subscribe({
