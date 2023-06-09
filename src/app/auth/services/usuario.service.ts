@@ -9,6 +9,8 @@ import {
   RegisterForm,
   Usuario,
 } from '../interfaces';
+import { UsuarioModel } from '../models/usuario.model';
+
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +22,8 @@ export class UsuarioService {
   private baseUrl = environment.baseUrl;
 
   private _googleEmail?: string;
+
+  public usuario?: UsuarioModel;
 
   constructor() { }
 
@@ -54,10 +58,11 @@ export class UsuarioService {
         'x-token':token
       }
     }).pipe(
-      tap( (res) => {
+      map( (res) => {
         sessionStorage.setItem('token', res.token!);
+        this.usuario = new UsuarioModel(res.usuario!);
+        return true
       }),
-      map( res => true),
       catchError( err => of(false))
     );
   }

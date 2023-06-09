@@ -1,5 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {Router} from "@angular/router";
+import { UsuarioModel } from '../../../auth/models/usuario.model';
 import { UsuarioService } from '../../../auth/services/usuario.service';
 
 declare const google: any;
@@ -14,6 +15,12 @@ export class HeaderComponent {
 
   private router = inject(Router);
   private usuarioService = inject(UsuarioService);
+
+  public usuario!: UsuarioModel;
+
+  constructor() {
+    this.usuario = this.usuarioService.usuario!;
+  }
 
   logout(): void {
     this.router.navigateByUrl('/auth/login');
