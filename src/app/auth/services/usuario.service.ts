@@ -1,11 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, map, Observable, of, tap } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { ObtenerUsuariosResponse } from '../../dashboard/interfaces';
 import {
   AuthResponse,
   GoogleSigninResponse,
-  LoginForm, PerfilForm,
+  LoginForm,
   RegisterForm,
   Usuario,
 } from '../interfaces';
@@ -20,12 +21,11 @@ export class UsuarioService {
   private http = inject(HttpClient);
 
   private baseUrl = environment.baseUrl;
-
-  private _googleEmail?: string;
-
   public usuario?: UsuarioModel;
 
   constructor() { }
+
+  private _googleEmail?: string;
 
   get googleEmail(): string {
     return this._googleEmail ?? '';
@@ -39,6 +39,12 @@ export class UsuarioService {
     return sessionStorage.getItem('token') ?? '';
   }
 
+  get headers() {
+    return {
+      'x-token': this.token,
+    };
+  }
+
   crearUsuario(formData: RegisterForm): Observable<AuthResponse> {
     const url = `${this.baseUrl}/usuarios`;
     return this.http.post<AuthResponse>(url, formData);
@@ -46,11 +52,11 @@ export class UsuarioService {
 
   actualizarPerfil(formData: Usuario) {
     formData.role = this.usuario!.role;
-    const url = `${this.baseUrl}/usuarios/${this.usuario!.uid}`;
+    const url     = `${this.baseUrl}/usuarios/${this.usuario!.uid}`;
     return this.http.put<AuthResponse>(url, formData, {
       headers: {
-        'x-token': this.token
-      }
+        'x-token': this.token,
+      },
     });
   }
 
@@ -67,16 +73,35 @@ export class UsuarioService {
   validarToken(): Observable<boolean> {
     const url = `${this.baseUrl}/login/renew`;
     return this.http.get<AuthResponse>(url, {
-      headers: {
-        'x-token': this.token
-      }
-    }).pipe(
-      map( (res) => {
-        sessionStorage.setItem('token', res.token!);
-        this.usuario = new UsuarioModel(res.usuario!);
-        return true
-      }),
-      catchError( err => of(false))
-    );
+        headers: {
+          'x-token': this.token,
+        },
+      })
+      .pipe(
+        map((res) => {
+          sessionStorage.setItem('token', res.token!);
+          this.usuario = new UsuarioModel(res.usuario!);
+          return true;
+        }),
+        catchError(err => of(false)),
+      );
+  }
+
+  cargarUsuarios(desde: number = 0, limit: number = 5): Observable<ObtenerUsuariosResponse> {
+    const url    = `${this.baseUrl}/usuarios`;
+    const params = new HttpParams()
+      .set('desde', desde)
+      .set('limit', limit);
+    return this.http.get<ObtenerUsuariosResponse>(url, {
+        headers: this.headers,
+        params,
+      })
+      .pipe(
+        map(resp => {
+          const usuarios = resp.usuarios?.map(user => new UsuarioModel(user));
+          resp.usuarios = usuarios;
+          return resp;
+        }),
+      );
   }
 }

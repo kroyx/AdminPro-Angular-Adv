@@ -9,3 +9,18 @@
 .cursor {
     cursor: pointer;
 }
+
+.w100 {
+    width: 100px;
+}
+
+.img-avatar {
+    width: 200px;
+    height: 200px;
+}
+
+.list-img-avatar {
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+}

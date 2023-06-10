@@ -5,10 +5,13 @@ import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-l
 import { AccountSettingsComponent } from './pages/account-settings/account-settings.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { Grafica1Component } from './pages/grafica1/grafica1.component';
+import { HospitalesComponent } from './pages/hospitales/hospitales.component';
+import { MedicosComponent } from './pages/medicos/medicos.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { ProgressComponent } from './pages/progress/progress.component';
 import { PromesasComponent } from './pages/promesas/promesas.component';
 import { RxjsComponent } from './pages/rxjs/rxjs.component';
+import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 
 const routes: Routes = [
   {
@@ -22,6 +25,12 @@ const routes: Routes = [
       { path: 'progress', component: ProgressComponent, data: { titulo: 'ProgressBar' } },
       { path: 'promesas', component: PromesasComponent, data: { titulo: 'Promesas' } },
       { path: 'rxjs', component: RxjsComponent, data: { titulo: 'Rxjs' } },
+
+
+
+      { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Usuarios' } },
+      { path: 'hospitales', component: HospitalesComponent, data: { titulo: 'Hospitales' } },
+      { path: 'medicos', component: MedicosComponent, data: { titulo: 'Medicos' } },
       { path: '**', component: NoPageFoundComponent },
     ],
   },

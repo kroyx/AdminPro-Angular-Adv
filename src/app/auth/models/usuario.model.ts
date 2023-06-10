@@ -26,6 +26,11 @@ export class UsuarioModel {
   }
 
   get imagenUrl() {
+
+    if (this.img?.includes('https')) {
+      return this.img;
+    }
+
     if (this.img) {
       return `${baseUrl}/upload/usuarios/${this.img}`;
     } else {

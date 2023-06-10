@@ -15,6 +15,9 @@ import { AccountSettingsComponent } from './pages/account-settings/account-setti
 import { PromesasComponent } from './pages/promesas/promesas.component';
 import { RxjsComponent } from './pages/rxjs/rxjs.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
+import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import { HospitalesComponent } from './pages/hospitales/hospitales.component';
+import { MedicosComponent } from './pages/medicos/medicos.component';
 
 
 @NgModule({
@@ -29,6 +32,9 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
     PromesasComponent,
     RxjsComponent,
     PerfilComponent,
+    UsuariosComponent,
+    HospitalesComponent,
+    MedicosComponent,
   ],
   imports: [
     CommonModule,
