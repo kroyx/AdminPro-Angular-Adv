@@ -2,16 +2,27 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <input class="form-control"
-               placeholder="Buscar usuario..."
-               type="text">
+        <div class="input-group">
+          <input #txtBuscar
+                 (keyup)="buscar(txtBuscar.value)"
+                 class="form-control"
+                 placeholder="Buscar usuario..."
+                 type="text">
+          <div class="input-group-addon">
+            <!-- <button (click)="limpiarBuscador()"> -->
+            <i (click)="limpiarBuscador()"
+               class="fa fa-remove text-danger cursor"></i>
+            <!-- </button> -->
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- Loading Modal -->
-<div *ngIf="cargandoUsuarios" class="row animated fadeIn fast">
+<div *ngIf="cargandoUsuarios"
+     class="row animated fadeIn fast">
   <div class="col-12">
     <div class="alert alert-info text-center">
       <h4 class="alert-heading">Cargando</h4>
@@ -22,7 +33,8 @@
 </div>
 
 <!-- Data table -->
-<div *ngIf="!cargandoUsuarios" class="row animated fadeIn fast">
+<div *ngIf="!cargandoUsuarios"
+     class="row animated fadeIn fast">
   <div class="col-12">
     <div class="card">
       <div class="card-body">
@@ -37,7 +49,7 @@
                 <th class="w100">Avatar</th>
                 <th>Correo</th>
                 <th>Nombre</th>
-                <th class="w100">Role</th>
+                <th class="w140">Role</th>
                 <th class="w100">Auth</th>
                 <th class="text-nowrap w100">Acciones</th>
               </tr>
@@ -45,11 +57,20 @@
             <tbody>
               <tr *ngFor="let usuario of usuarios">
                 <td class="text-center">
-                  <img class="list-img-avatar" [src]="usuario.imagenUrl">
+                  <img (click)="abrirModal(usuario)"
+                       [src]="usuario.imagenUrl"
+                       class="list-img-avatar cursor">
                 </td>
                 <td>{{ usuario.email }}</td>
                 <td>{{ usuario.nombre }}</td>
-                <td>{{ usuario.role }}</td>
+                <td>
+                  <select (change)="cambiarRol(usuario)"
+                          [(ngModel)]="usuario.role"
+                          class="form-control">
+                    <option value="ADMIN_ROLE">Admin</option>
+                    <option value="USER_ROLE">User</option>
+                  </select>
+                </td>
                 <td>
                   <span *ngIf="usuario.google; else emailAuth"
                         class="label label-danger">
@@ -60,14 +81,17 @@
                   </ng-template>
                 </td>
                 <td class="text-nowrap text-center">
-                  <a data-original-title="Edit"
-                     data-toggle="tooltip"
-                     href="#">
-                    <i class="fa fa-pencil text-inverse m-r-10"></i>
-                  </a>
-                  <a data-original-title="Close"
-                     data-toggle="tooltip"
-                     href="#">
+                  <!-- <a (click)="actualizarUsuario(usuario)" -->
+                  <!--    class="cursor" -->
+                  <!--    data-original-title="Edit" -->
+                  <!--    data-toggle="tooltip"> -->
+                  <!--   <i class="fa fa-pencil text-inverse m-r-10"></i> -->
+                  <!-- </a> -->
+                  <a (click)="borrarUsuario(usuario)"
+                     *ngIf="usuario.uid !== usuarioActualId"
+                     class="cursor"
+                     data-original-title="Close"
+                     data-toggle="tooltip">
                     <i class="fa fa-close text-danger"></i>
                   </a>
                 </td>
@@ -76,9 +100,15 @@
           </table>
         </div>
 
-        <button class="btn btn-secondary" (click)="cambiarPagina(-limit)">Anteriores</button>
-        &nbsp;
-        <button class="btn btn-secondary" (click)="cambiarPagina(limit)">Siguientes</button>
+        <div *ngIf="mostrarBotones">
+          <button (click)="cambiarPagina(-limit)"
+                  class="btn btn-secondary">Anteriores
+          </button>
+          &nbsp;
+          <button (click)="cambiarPagina(limit)"
+                  class="btn btn-secondary">Siguientes
+          </button>
+        </div>
       </div>
     </div>
   </div>

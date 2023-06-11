@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {Router} from "@angular/router";
-import { UsuarioModel } from '../../../auth/models/usuario.model';
-import { UsuarioService } from '../../../auth/services/usuario.service';
+import { UsuarioModel } from '../../../dashboard/models/usuario.model';
+import { UsuarioAuthService } from '../../../auth/services/usuario-auth.service';
 
 declare const google: any;
 
@@ -14,7 +14,7 @@ declare const google: any;
 export class HeaderComponent {
 
   private router = inject(Router);
-  private usuarioService = inject(UsuarioService);
+  private usuarioService = inject(UsuarioAuthService);
 
   public usuario!: UsuarioModel;
 

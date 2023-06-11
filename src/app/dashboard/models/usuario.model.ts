@@ -1,5 +1,5 @@
 import { environment } from '../../../environments/environment';
-import { Usuario } from '../interfaces';
+import { Usuario } from '../../auth/interfaces';
 
 const baseUrl = environment.baseUrl;
 
@@ -18,8 +18,8 @@ export class UsuarioModel {
   constructor(usuario: Usuario) {
     this.nombre = usuario.nombre;
     this.email = usuario.email;
-    this.password = usuario.password ?? '';
-    this.img = usuario.img ?? '';
+    this.password = usuario.password;
+    this.img = usuario.img;
     this.google = usuario.google;
     this.role = usuario.role;
     this.uid = usuario.uid;

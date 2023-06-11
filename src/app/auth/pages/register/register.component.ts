@@ -9,7 +9,7 @@ import {
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthResponse } from '../../interfaces';
-import { UsuarioService } from '../../services/usuario.service';
+import { UsuarioAuthService } from '../../services/usuario-auth.service';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +22,7 @@ export class RegisterComponent {
 
   private router         = inject(Router);
   private fb             = inject(FormBuilder);
-  private usuarioService = inject(UsuarioService);
+  private usuarioService = inject(UsuarioAuthService);
 
   public registerForm: FormGroup = this.fb.group({
     nombre: [ 'Samuel', Validators.required ],

@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { UsuarioService } from '../../auth/services/usuario.service';
+import { UsuarioAuthService } from '../../auth/services/usuario-auth.service';
 import { FileUploadResponse } from '../interfaces';
 
 const baseUrl = environment.baseUrl;
@@ -10,7 +10,7 @@ const baseUrl = environment.baseUrl;
 })
 export class FileUploadService {
 
-  private usuarioService = inject(UsuarioService);
+  private usuarioService = inject(UsuarioAuthService);
 
   constructor() { }
 

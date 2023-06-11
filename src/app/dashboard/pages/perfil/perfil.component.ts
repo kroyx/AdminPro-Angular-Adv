@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { UsuarioModel } from '../../../auth/models/usuario.model';
-import { UsuarioService } from '../../../auth/services/usuario.service';
+import { UsuarioModel } from '../../models/usuario.model';
+import { UsuarioAuthService } from '../../../auth/services/usuario-auth.service';
 import { FileUploadService } from '../../services/file-upload.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { FileUploadService } from '../../services/file-upload.service';
 export class PerfilComponent implements OnInit {
 
   private fb             = inject(FormBuilder);
-  private usuarioService = inject(UsuarioService);
+  private usuarioService = inject(UsuarioAuthService);
   private fileUploadService = inject(FileUploadService);
 
   public usuario!: UsuarioModel;

@@ -1,6 +1,6 @@
 import {Component, inject} from '@angular/core';
-import { UsuarioModel } from '../../../auth/models/usuario.model';
-import { UsuarioService } from '../../../auth/services/usuario.service';
+import { UsuarioModel } from '../../../dashboard/models/usuario.model';
+import { UsuarioAuthService } from '../../../auth/services/usuario-auth.service';
 import {MenuItem, SidebarService} from "../../services/sidebar.service";
 
 @Component({
@@ -12,7 +12,7 @@ import {MenuItem, SidebarService} from "../../services/sidebar.service";
 export class SidebarComponent {
 
   public sidebarService = inject(SidebarService);
-  private usuarioService = inject(UsuarioService);
+  private usuarioService = inject(UsuarioAuthService);
 
   public menuItems!: MenuItem[];
   public usuario!: UsuarioModel;

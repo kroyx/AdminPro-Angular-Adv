@@ -1,0 +1,52 @@
+<div [class.oculto]="ocultarModal()"
+     class="fondo-modal-imagen animated fadeIn fast">
+  <div aria-labelledby="myModalLabel"
+       class="modal fade show"
+       id="responsive-modal"
+       role="dialog"
+       style="display: block; padding-right: 15px;"
+       tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Cargar imagen</h4>
+          <button aria-hidden="true"
+                  class="close"
+                  data-dismiss="modal"
+                  (click)="cerrarModal()"
+                  type="button">×
+          </button>
+        </div>
+        <div class="modal-body">
+          <h3>Seleccione una imagen</h3>
+          <div class="text-center">
+            <img *ngIf="!imgTemp; else imgTemporal"
+                 [src]="img()"
+                 alt="avatar_perfil"
+                 class="img-avatar">
+            <ng-template #imgTemporal>
+              <img [src]="imgTemp"
+                   alt="avatar_perfil"
+                   class="img-avatar">
+            </ng-template>
+          </div>
+          <br>
+          <input (change)="cambiarImagen($event)"
+                 class="form-control"
+                 type="file">
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-default waves-effect"
+                  data-dismiss="modal"
+                  (click)="cerrarModal()"
+                  type="button">Cancelar
+          </button>
+          <button class="btn btn-danger waves-effect waves-light"
+                  (click)="subirImagen()"
+                  type="button">Actualizar foto
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

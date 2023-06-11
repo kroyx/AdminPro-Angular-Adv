@@ -10,13 +10,13 @@ import {
   RegisterForm,
   Usuario,
 } from '../interfaces';
-import { UsuarioModel } from '../models/usuario.model';
+import { UsuarioModel } from '../../dashboard/models/usuario.model';
 
 
 @Injectable({
   providedIn: 'root',
 })
-export class UsuarioService {
+export class UsuarioAuthService {
 
   private http = inject(HttpClient);
 
@@ -87,21 +87,4 @@ export class UsuarioService {
       );
   }
 
-  cargarUsuarios(desde: number = 0, limit: number = 5): Observable<ObtenerUsuariosResponse> {
-    const url    = `${this.baseUrl}/usuarios`;
-    const params = new HttpParams()
-      .set('desde', desde)
-      .set('limit', limit);
-    return this.http.get<ObtenerUsuariosResponse>(url, {
-        headers: this.headers,
-        params,
-      })
-      .pipe(
-        map(resp => {
-          const usuarios = resp.usuarios?.map(user => new UsuarioModel(user));
-          resp.usuarios = usuarios;
-          return resp;
-        }),
-      );
-  }
 }

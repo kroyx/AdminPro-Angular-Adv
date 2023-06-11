@@ -18,6 +18,7 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { HospitalesComponent } from './pages/hospitales/hospitales.component';
 import { MedicosComponent } from './pages/medicos/medicos.component';
+import { ModalImagenComponent } from './components/modal-imagen/modal-imagen.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { MedicosComponent } from './pages/medicos/medicos.component';
     UsuariosComponent,
     HospitalesComponent,
     MedicosComponent,
+    ModalImagenComponent,
   ],
   imports: [
     CommonModule,

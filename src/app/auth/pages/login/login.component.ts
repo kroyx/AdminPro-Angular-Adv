@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { environment } from '../../../../environments/environment';
-import { UsuarioService } from '../../services/usuario.service';
+import { UsuarioAuthService } from '../../services/usuario-auth.service';
 
 declare const google: any;
 
@@ -18,7 +18,7 @@ export class LoginComponent implements AfterViewInit {
 
   private router         = inject(Router);
   private fb             = inject(FormBuilder);
-  private usuarioService = inject(UsuarioService);
+  private usuarioService = inject(UsuarioAuthService);
 
   private rememberedUser = localStorage.getItem('email') ?? '';
 
