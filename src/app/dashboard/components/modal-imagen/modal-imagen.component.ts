@@ -1,4 +1,5 @@
 import { Component, computed, inject, Signal } from '@angular/core';
+import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 import { FileUploadService } from '../../services/file-upload.service';
 import { ModalImagenService } from '../../services/modal-imagen.service';
@@ -51,8 +52,8 @@ export class ModalImagenComponent {
       .actualizarFoto(this.imagenSubir!, this.tipo()!, this.id()!)
       .then(img => {
         Swal.fire('', 'Cambios realizados con éxito', 'success');
-        this.modalImagenService.nuevaImagen.set(true);
         this.cerrarModal();
+        this.modalImagenService.nuevaImagen.emit(img);
       })
       .catch(err => {
         Swal.fire('Error', err.error.msg, 'error');

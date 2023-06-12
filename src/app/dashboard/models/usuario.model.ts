@@ -14,15 +14,14 @@ export class UsuarioModel {
   public uid?: string;
 
 
-
   constructor(usuario: Usuario) {
-    this.nombre = usuario.nombre;
-    this.email = usuario.email;
+    this.nombre   = usuario.nombre;
+    this.email    = usuario.email;
     this.password = usuario.password;
-    this.img = usuario.img;
-    this.google = usuario.google;
-    this.role = usuario.role;
-    this.uid = usuario.uid;
+    this.img      = usuario.img;
+    this.google   = usuario.google;
+    this.role     = usuario.role;
+    this.uid      = usuario.uid;
   }
 
   get imagenUrl() {

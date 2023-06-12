@@ -1,10 +1,11 @@
-import { Component, effect, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { delay, Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
-import { UsuarioAuthService } from '../../../auth/services/usuario-auth.service';
-import { Entidad } from '../../interfaces';
-import { UsuarioModel } from '../../models/usuario.model';
-import { ModalImagenService } from '../../services/modal-imagen.service';
-import { UsuarioService } from '../../services/usuario.service';
+import { UsuarioAuthService } from '../../../../auth/services/usuario-auth.service';
+import { Entidad } from '../../../interfaces';
+import { UsuarioModel } from '../../../models/usuario.model';
+import { ModalImagenService } from '../../../services/modal-imagen.service';
+import { UsuarioService } from '../../../services/usuario.service';
 
 @Component({
   templateUrl: './usuarios.component.html',
@@ -17,6 +18,7 @@ export class UsuariosComponent implements OnInit {
   private modalImagenService = inject(ModalImagenService);
 
   private debounceTimer?: NodeJS.Timeout;
+  private nuevaImagenSub!: Subscription;
 
   @ViewChild('txtBuscar') inputBuscar?: ElementRef<HTMLInputElement>;
 
@@ -32,14 +34,12 @@ export class UsuariosComponent implements OnInit {
   ngOnInit(): void {
     this.usuarioActualId = this.usuarioAuthService.usuario?.uid ?? '';
     this.cargarUsuarios();
+    this.nuevaImagenSub = this.modalImagenService.nuevaImagen
+      .pipe(
+        delay(100),
+      )
+      .subscribe(() => this.cargarUsuarios());
   }
-
-  nuevaImagenEffect = effect( () => {
-    if (this.modalImagenService.nuevaImagen()) {
-      this.cargarUsuarios();
-      this.modalImagenService.nuevaImagen.set(false);
-    }
-  })
 
   cargarUsuarios() {
     this.cargandoUsuarios = true;
@@ -124,24 +124,26 @@ export class UsuariosComponent implements OnInit {
         confirmButtonText: 'Confirmar',
       })
       .then((result) => {
-        this.usuarioService.eliminarUsuario(usuario.uid!)
-          .subscribe({
-            next: resp => {
-              this.cargarUsuarios();
-              Swal.fire(
-                'Eliminado!',
-                `El usuario ${usuario.nombre} ha sido eliminado con éxito`,
-                'success',
-              );
-            },
-            error: err => {
-              Swal.fire(
-                'Error',
-                err.error.msg,
-                'error',
-              );
-            },
-          });
+        if (result.value) {
+          this.usuarioService.eliminarUsuario(usuario.uid!)
+            .subscribe({
+              next: resp => {
+                this.cargarUsuarios();
+                Swal.fire(
+                  'Eliminado!',
+                  `El usuario ${usuario.nombre} ha sido eliminado con éxito`,
+                  'success',
+                );
+              },
+              error: err => {
+                Swal.fire(
+                  'Error',
+                  err.error.msg,
+                  'error',
+                );
+              },
+            });
+        }
       });
   }
 

@@ -15,10 +15,11 @@ import { AccountSettingsComponent } from './pages/account-settings/account-setti
 import { PromesasComponent } from './pages/promesas/promesas.component';
 import { RxjsComponent } from './pages/rxjs/rxjs.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
-import { UsuariosComponent } from './pages/usuarios/usuarios.component';
-import { HospitalesComponent } from './pages/hospitales/hospitales.component';
-import { MedicosComponent } from './pages/medicos/medicos.component';
+import { UsuariosComponent } from './pages/mantenimientos/usuarios/usuarios.component';
+import { HospitalesComponent } from './pages/mantenimientos/hospitales/hospitales.component';
+import { MedicosComponent } from './pages/mantenimientos/medicos/medicos.component';
 import { ModalImagenComponent } from './components/modal-imagen/modal-imagen.component';
+import { ImagenPipe } from './pipes/imagen.pipe';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { ModalImagenComponent } from './components/modal-imagen/modal-imagen.com
     HospitalesComponent,
     MedicosComponent,
     ModalImagenComponent,
+    ImagenPipe,
   ],
   imports: [
     CommonModule,

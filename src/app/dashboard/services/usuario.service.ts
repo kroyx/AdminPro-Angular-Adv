@@ -2,8 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { BusquedaResponse, EliminarResponse, ObtenerUsuariosResponse } from '../interfaces';
-import { ActualizarUsuarioResponse } from '../interfaces/actualizar-usuario-response.interface';
+import { BusquedaUsuarioResponse, EliminarResponse, ObtenerUsuariosResponse } from '../interfaces';
+import { ActualizarUsuarioResponse } from '../interfaces/usuarios/actualizar-usuario-response.interface';
 import { UsuarioModel } from '../models/usuario.model';
 
 @Injectable({
@@ -45,9 +45,9 @@ export class UsuarioService {
       );
   }
 
-  buscarUsuarios(termino: string): Observable<BusquedaResponse> {
+  buscarUsuarios(termino: string): Observable<BusquedaUsuarioResponse> {
     const url = `${this.baseUrl}/todo/coleccion/usuarios/${termino}`;
-    return this.http.get<BusquedaResponse>(url, {
+    return this.http.get<BusquedaUsuarioResponse>(url, {
         headers: this.headers,
       })
       .pipe(

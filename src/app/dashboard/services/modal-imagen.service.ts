@@ -1,4 +1,4 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, EventEmitter, Injectable, signal } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Entidad } from '../interfaces';
 
@@ -15,7 +15,8 @@ export class ModalImagenService {
   public img = signal<string | null>(null);
   public id = signal<string | null>(null);
   public tipo = signal<Entidad | null>(null);
-  public nuevaImagen = signal<boolean>(false);
+  // public nuevaImagen = signal<boolean>(false);
+  public nuevaImagen: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 

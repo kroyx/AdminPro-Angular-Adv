@@ -292,7 +292,7 @@
 			return ChartElement;
 		},
 		noop = helpers.noop = function(){},
-		uid = helpers.uid = (function(){
+		uid = helpers._id = (function(){
 			var id=0;
 			return function(){
 				return "chart-" + id++;

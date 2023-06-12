@@ -1,4 +1,4 @@
-import { Usuario } from './usuario.interface';
+import { Usuario } from '../../dashboard/interfaces/usuarios/usuario.interface';
 
 export interface AuthResponse {
   ok: boolean;

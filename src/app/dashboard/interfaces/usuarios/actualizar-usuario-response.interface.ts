@@ -1,4 +1,4 @@
-import { UsuarioModel } from '../models/usuario.model';
+import { UsuarioModel } from '../../models/usuario.model';
 
 export interface ActualizarUsuarioResponse {
   ok: boolean;
