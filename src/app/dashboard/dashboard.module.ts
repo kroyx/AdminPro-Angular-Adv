@@ -21,6 +21,7 @@ import { MedicosComponent } from './pages/mantenimientos/medicos/medicos.compone
 import { ModalImagenComponent } from './components/modal-imagen/modal-imagen.component';
 import { ImagenPipe } from './pipes/imagen.pipe';
 import { MedicoComponent } from './pages/mantenimientos/medico/medico.component';
+import { BusquedaComponent } from './pages/busqueda/busqueda.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { MedicoComponent } from './pages/mantenimientos/medico/medico.component'
     ModalImagenComponent,
     ImagenPipe,
     MedicoComponent,
+    BusquedaComponent,
   ],
   imports: [
     CommonModule,

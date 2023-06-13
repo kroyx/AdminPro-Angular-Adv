@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { catchError, map, Observable, of } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ObtenerUsuariosResponse } from '../../dashboard/interfaces';
@@ -12,6 +13,7 @@ import {
 } from '../interfaces';
 import { UsuarioModel } from '../../dashboard/models/usuario.model';
 
+declare const google: any;
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +21,7 @@ import { UsuarioModel } from '../../dashboard/models/usuario.model';
 export class UsuarioAuthService {
 
   private http = inject(HttpClient);
+  private router = inject(Router);
 
   private baseUrl = environment.baseUrl;
   public usuario?: UsuarioModel;
@@ -80,6 +83,7 @@ export class UsuarioAuthService {
       .pipe(
         map((res) => {
           sessionStorage.setItem('token', res.token!);
+          sessionStorage.setItem('menu', JSON.stringify(res.menu!));
           this.usuario = new UsuarioModel(res.usuario!);
           return true;
         }),
@@ -87,4 +91,19 @@ export class UsuarioAuthService {
       );
   }
 
+  logout(): void {
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('menu');
+
+    const googleAccount = this.googleEmail;
+
+    if (!googleAccount) {
+      this.router.navigateByUrl('/auth/login');
+      return;
+    }
+
+    google.accounts.id.revoke( googleAccount, () => {
+      this.router.navigateByUrl('/auth/login');
+    });
+  }
 }

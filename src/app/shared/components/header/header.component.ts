@@ -14,26 +14,20 @@ declare const google: any;
 export class HeaderComponent {
 
   private router = inject(Router);
-  private usuarioService = inject(UsuarioAuthService);
+  private usuarioAuthService = inject(UsuarioAuthService);
 
   public usuario!: UsuarioModel;
 
   constructor() {
-    this.usuario = this.usuarioService.usuario!;
+    this.usuario = this.usuarioAuthService.usuario!;
   }
 
   logout(): void {
-    this.router.navigateByUrl('/auth/login');
-    sessionStorage.removeItem('token');
+    this.usuarioAuthService.logout();
   }
 
-  googleLogout() {
-    const googleAccount = this.usuarioService.googleEmail;
-
-    if (!googleAccount) return;
-
-    google.accounts.id.revoke( googleAccount, () => {
-      this.router.navigateByUrl('/auth/login');
-    });
+  buscar(termino: string) {
+    if (!termino) return;
+    this.router.navigateByUrl(`/dashboard/buscar/${termino}`);
   }
 }

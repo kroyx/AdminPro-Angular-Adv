@@ -1,6 +1,7 @@
 export * from './eliminar-response.interface';
 export * from './file-upload-response.interface';
 export * from './entidad.enum';
+export * from './busqueda-response.interface';
 
 // Usuarios
 export * from './usuarios/usuario.interface';

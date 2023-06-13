@@ -70,10 +70,12 @@
              href="javascript:void(0)">
             <i class="ti-search"></i>
           </a>
-          <form class="app-search">
+          <form class="app-search"
+                (submit)="buscar(txtTermino.value)">
             <input class="form-control"
-                   placeholder="Search & enter"
-                   type="text">
+                   placeholder="Buscar médico, hospital o usuario"
+                   type="text"
+                    #txtTermino>
             <a class="srh-btn">
               <i class="ti-close"></i>
             </a>

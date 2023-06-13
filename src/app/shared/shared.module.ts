@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -17,6 +18,7 @@ import {CommonModule} from "@angular/common";
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule
   ],
   exports: [
     BreadcrumbsComponent,

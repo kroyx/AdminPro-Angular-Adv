@@ -87,6 +87,7 @@ export class RegisterComponent {
       .subscribe({
         next: (res: AuthResponse) => {
           sessionStorage.setItem('token', res.token!);
+          sessionStorage.setItem('menu', JSON.stringify(res.menu!));
           this.router.navigateByUrl('/dashboard');
         },
         error: ({ error }) => {

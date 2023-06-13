@@ -84,12 +84,12 @@ export class LoginComponent implements AfterViewInit {
       this.loginForm.markAllAsTouched();
       return;
     }
-    console.log('login');
 
     this.usuarioService.loginUsuario(this.loginForm.value)
       .subscribe({
         next: resp => {
           sessionStorage.setItem('token', resp.token!);
+          sessionStorage.setItem('menu', JSON.stringify(resp.menu!));
 
           if (this.loginForm.get('remember')!.value) {
             localStorage.setItem('email', this.loginForm.get('email')!.value);

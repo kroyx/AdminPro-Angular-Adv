@@ -1,39 +1,23 @@
-import { Injectable } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
+import { MenuItem } from '../../auth/interfaces';
 
-export interface MenuItem {
-  title: string;
-  icon?: string;
-  url?: string;
-  submenu?: MenuItem[];
-}
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SidebarService {
 
-  public menuApp: MenuItem[] = [
-    {
-      title: 'Dashboard',
-      icon: 'mdi mdi-gauge',
-      submenu: [
-        {title: 'Main', url: './'},
-        {title: 'Gráficas', url: 'grafica1'},
-        {title: 'ProgressBar', url: 'progress'},
-        {title: 'Promesas', url: 'promesas'},
-        {title: 'Rxjs', url: 'rxjs'},
-      ]
-    },
-    {
-      title: 'Mantenimientos',
-      icon: 'mdi mdi-folder-lock-open',
-      submenu: [
-        {title: 'Usuarios', url: 'usuarios'},
-        {title: 'Hospitales', url: 'hospitales'},
-        {title: 'Médicos', url: 'medicos'},
-      ]
-    },
-  ];
+  // public menuApp!: MenuItem[];
+
+  private _menuApp = signal<MenuItem[]>([]);
+  public menuApp   = computed(() => this._menuApp());
 
   constructor() { }
+
+  cargarMenu() {
+    const menu = sessionStorage.getItem('menu');
+    if (menu) {
+      this._menuApp.set(JSON.parse(menu));
+    }
+  }
 }
