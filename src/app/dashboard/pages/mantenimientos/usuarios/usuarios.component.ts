@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { delay, Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 import { UsuarioAuthService } from '../../../../auth/services/usuario-auth.service';
@@ -11,7 +11,7 @@ import { UsuarioService } from '../../../services/usuario.service';
   templateUrl: './usuarios.component.html',
   styleUrls: [ './usuarios.component.css' ],
 })
-export class UsuariosComponent implements OnInit {
+export class UsuariosComponent implements OnInit, OnDestroy {
 
   private usuarioService     = inject(UsuarioService);
   private usuarioAuthService = inject(UsuarioAuthService);
@@ -39,6 +39,10 @@ export class UsuariosComponent implements OnInit {
         delay(100),
       )
       .subscribe(() => this.cargarUsuarios());
+  }
+
+  ngOnDestroy(): void {
+    this.nuevaImagenSub.unsubscribe();
   }
 
   cargarUsuarios() {

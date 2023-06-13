@@ -13,3 +13,10 @@ export * from './hospitales/hospital.interface';
 export * from './hospitales/obtener-hospitales-response.interface';
 export * from './hospitales/actualizar-crear-hospital-response.interface';
 export * from './hospitales/busqueda-hospital-response.interface';
+
+// Medicos
+export * from './medicos/medico.interface';
+export * from './medicos/obtener-medicos-response.interface';
+export * from './medicos/obtener-medico-response.interface';
+export * from './medicos/actualizar-crear-medico-response.interface';
+export * from './medicos/busqueda-medico-response.interface';

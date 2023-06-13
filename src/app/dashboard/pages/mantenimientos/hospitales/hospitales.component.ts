@@ -1,4 +1,4 @@
-import { Component, effect, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, effect, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { delay, Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 import { Entidad } from '../../../interfaces';
@@ -10,7 +10,7 @@ import { ModalImagenService } from '../../../services/modal-imagen.service';
   templateUrl: './hospitales.component.html',
   styleUrls: [ './hospitales.component.css' ],
 })
-export class HospitalesComponent implements OnInit {
+export class HospitalesComponent implements OnInit, OnDestroy {
 
   private hospitalService    = inject(HospitalService);
   private modalImagenService = inject(ModalImagenService);
@@ -36,6 +36,10 @@ export class HospitalesComponent implements OnInit {
         delay(100),
       )
       .subscribe(() => this.cargarHospitales());
+  }
+
+  ngOnDestroy(): void {
+    this.nuevaImagenSub.unsubscribe();
   }
 
   cargarHospitales() {
@@ -147,7 +151,6 @@ export class HospitalesComponent implements OnInit {
   }
 
   borrarHospital(hospital: HospitalModel) {
-    console.log(hospital);
     Swal.fire({
         title: '¿Estás seguro?',
         text: "No se podrá revertir la acción",

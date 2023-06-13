@@ -6,6 +6,7 @@ import { AccountSettingsComponent } from './pages/account-settings/account-setti
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { Grafica1Component } from './pages/grafica1/grafica1.component';
 import { HospitalesComponent } from './pages/mantenimientos/hospitales/hospitales.component';
+import { MedicoComponent } from './pages/mantenimientos/medico/medico.component';
 import { MedicosComponent } from './pages/mantenimientos/medicos/medicos.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { ProgressComponent } from './pages/progress/progress.component';
@@ -28,9 +29,10 @@ const routes: Routes = [
 
 
 
-      { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Usuarios' } },
-      { path: 'hospitales', component: HospitalesComponent, data: { titulo: 'Hospitales' } },
-      { path: 'medicos', component: MedicosComponent, data: { titulo: 'Medicos' } },
+      { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Mantenimiento de Usuarios' } },
+      { path: 'hospitales', component: HospitalesComponent, data: { titulo: 'Mantenimiento de Hospitales' } },
+      { path: 'medicos', component: MedicosComponent, data: { titulo: 'Mantenimiento de Medicos' } },
+      { path: 'medico/:id', component: MedicoComponent, data: { titulo: 'Mantenimiento de Medicos' } },
       { path: '**', component: NoPageFoundComponent },
     ],
   },

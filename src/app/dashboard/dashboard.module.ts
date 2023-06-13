@@ -20,6 +20,7 @@ import { HospitalesComponent } from './pages/mantenimientos/hospitales/hospitale
 import { MedicosComponent } from './pages/mantenimientos/medicos/medicos.component';
 import { ModalImagenComponent } from './components/modal-imagen/modal-imagen.component';
 import { ImagenPipe } from './pipes/imagen.pipe';
+import { MedicoComponent } from './pages/mantenimientos/medico/medico.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { ImagenPipe } from './pipes/imagen.pipe';
     MedicosComponent,
     ModalImagenComponent,
     ImagenPipe,
+    MedicoComponent,
   ],
   imports: [
     CommonModule,
